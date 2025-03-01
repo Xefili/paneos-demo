@@ -18,9 +18,9 @@ function sound() {
 	}
 } sound();
 
-thumb.addEventListener("mousedown", (e) => {
+thumb.addEventListener("pointerdown", (e) => {
 	startX2 = e.x - thumb.offsetLeft;
-	thumb.addEventListener("mousemove", move2, true);
+	thumb.addEventListener("pointermove", move2, true);
 });
 
 function move2(e) {
@@ -49,7 +49,7 @@ function move2(e) {
 	sound();
 }
 
-thumb.addEventListener("mouseup", () => {
+thumb.addEventListener("pointerup", () => {
 	thumb.classList.add("hover:border-2");
-	thumb.removeEventListener("mousemove", move2, true);
+	thumb.removeEventListener("pointermove", move2, true);
 });
