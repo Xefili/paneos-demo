@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" class="w-full h-full">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	<link rel="stylesheet" href="app.css">
+	<title>PaneOS</title>
+</head>
+<body class="w-full h-full overflow-x-hidden overflow-y-hidden">
+	<!--Desktop-->
+	<div class="w-full h-full" id="desktop">
+		<!--Taskbar-->
+		<div class="w-full flex justify-between items-center h-12 text-white fixed bottom-0 backdrop-blur-2xl p-2 z-50">
+			<div class="flex">
+				<button class="flex flex-row" id="startMenu">
+					<img class="h-10 w-10" src="icons/start.png" alt="">
+				</button>
+			</div>
+			<div class="flex">
+				<div class="flex flex-row gap-4">
+					<button class="flex flex-row items-center" id="overflowButton">
+						<e class="material-symbols-outlined">arrow_circle_up</e>
+					</button>
+					<button class="flex flex-row text-center items-center gap-2" id="networkButton">
+						<e class="material-symbols-outlined">signal_wifi_4_bar</e>
+						<e class="material-symbols-outlined">volume_up</e>
+					</button>
+					<div class="flex flex-col text-right">
+						<span id="clock"></span>
+						<span id="date"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Flyouts-->
+		<div>
+			<div id="startMenuFlyout" class="hidden grid grid-rows-[1fr_5fr_1fr] grid-cols-1 absolute bottom-16 left-4 h-1/2 w-1/4 backdrop-blur-2xl bg-neutral-600/25 rounded-xl border-neutral-600 border">
+				<input type="text" name="" id="" placeholder="Search..." class="h-8 p-2 rounded-2xl bg-neutral-800/25 border-neutral-900 border-2 m-2 text-white self-center">
+				<div class="grid">
+
+				</div>
+				<div class="bg-neutral-600/25 rounded-b-2xl flex flex-row justify-between p-4 text-white border-t-neutral-600 border-t">
+					<div class="flex flex-row items-center cursor-pointer">
+						<e class="material-symbols-outlined">image</e>
+						<span>Xefili dotDEV</span>
+					</div>
+					<div class="flex flex-row items-center h-full gap-4">
+						<e class="material-symbols-outlined cursor-pointer">settings</e>
+						<e class="material-symbols-outlined cursor-pointer">power_settings_new</e>
+					</div>
+				</div>
+			</div>
+
+			<div id="overflowFlyout" class="hidden grid grid-cols-5 absolute right-24 bottom-16 backdrop-blur-2xl bg-neutral-600/25 w-48 rounded-xl border-neutral-600 border text-white p-4 gap-2 gap-y-4">
+				<e class="material-symbols-outlined text-indigo-500">cloud_upload</e>
+				<e class="material-symbols-outlined">camera</e>
+				<e class="material-symbols-outlined text-emerald-400">memory</e>
+				<e class="material-symbols-outlined text-sky-400">window</e>
+				<e class="material-symbols-outlined text-amber-400">adb</e>
+				<e class="material-symbols-outlined">usb</e>
+				<e class="material-symbols-outlined text-red-400">box_edit</e>
+				<e class="material-symbols-outlined">camera</e>
+				<e class="material-symbols-outlined text-emerald-400">memory</e>
+				<e class="material-symbols-outlined text-sky-400">window</e>
+				<e class="material-symbols-outlined text-amber-400">adb</e>
+			</div>
+
+			<div id="networkFlyout" class="hidden grid grid-cols-3 grid-rows-3 absolute bottom-16 right-4 border-neutral-600 border-2 backdrop-blur-2xl bg-neutral-600/25 text-white gap-4 p-4 rounded-xl">
+				<div class="grid grid-rows-[2fr_1fr] grid-cols-1 text-center">
+					<button class="border-neutral-600 border rounded-lg bg-neutral-600/25">
+						<e class="material-symbols-outlined">brightness_medium</e>
+					</button>
+					<span>Brightness</span>
+				</div>
+				<div class="grid grid-rows-[2fr_1fr] grid-cols-1 text-center">
+					<button class="border-neutral-600 border rounded-lg bg-neutral-600/25">
+						<e class="material-symbols-outlined">accessibility</e>
+					</button>
+					<span>Accessibility</span>
+				</div>
+				<div class="grid grid-rows-[2fr_1fr] grid-cols-1 text-center">
+					<button class="border-neutral-600 border rounded-lg bg-neutral-600/25">
+						<e class="material-symbols-outlined">share</e>
+					</button>
+					<span>Quick Share</span>
+				</div>
+				<div class="grid grid-rows-[2fr_1fr] grid-cols-1 text-center">
+					<button class="border-neutral-600 border rounded-lg bg-neutral-600/25">
+						<e class="material-symbols-outlined">cast</e>
+					</button>
+					<span>Cast</span>
+				</div>
+				<div class="grid grid-rows-[2fr_1fr] grid-cols-1 text-center">
+					<button class="border-neutral-600 border rounded-lg bg-neutral-600/25">
+						<e class="material-symbols-outlined">energy_program_saving</e>
+					</button>
+					<span>Energy Saver</span>
+				</div>
+				<div class="grid grid-rows-[2fr_1fr] grid-cols-1 text-center">
+					<button class="border-neutral-600 border rounded-lg bg-neutral-600/25">
+						<e class="material-symbols-outlined">subtitles</e>
+					</button>
+					<span>Live Captions</span>
+				</div>
+				<div class="col-span-3">
+					<div class="flex flex-row items-center gap-4">
+						<e class="material-symbols-outlined" id="vol">volume_off</e>
+						<x-track id="x-track" class="h-1 w-full bg-neutral-500 rounded-full relative flex items-center">
+							<x-progress id="x-progress" class="absolute w-4 h-1 block rounded-full bg-indigo-400"></x-progress>
+							<x-thumb id="x-thumb" class="h-5 w-5 rounded-full bg-indigo-400 border-4 hover:border-2 border-neutral-800 block absolute"></x-thumb>	
+						</x-track>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Window-->
+		<div id="win1" class="absolute bg-neutral-700/50 rounded-lg backdrop-blur-3xl text-white">
+			<div id="bar" class="flex flex-row justify-between select-none p-2 border-b border-neutral-700/25">
+				<div class="flex flex-row items-center gap-2">
+					<e class="material-symbols-outlined">dashboard</e>
+					<span>PaneOS Native Application</span>
+				</div>
+				<div class="flex flex-row gap-2">
+					<button class="material-symbols-outlined">minimize</button>
+					<button class="material-symbols-outlined">stack</button>
+					<button class="material-symbols-outlined">close</button>
+				</div>
+			</div>
+			<div class="relative p-2 flex flex-row gap-4">
+				<div class="flex flex-col gap-4 border-r border-neutral-700/25 pr-2">
+					<button id="jesuscrist" class="flex flex-row items-center gap-2">
+						<e class="material-symbols-outlined rounded-lg p-2">menu</e>
+						<span class="expandable hidden block">Menu</span>
+					</button>
+					<button class="flex flex-row items-center gap-2">
+						<e class="material-symbols-outlined rounded-lg p-2 bg-indigo-400/50">assignment_return</e>
+						<span class="expandable hidden block">Main Page</span>
+					</button>
+					<button class="flex flex-row items-center gap-2">
+						<e class="material-symbols-outlined rounded-lg p-2">quiz</e>
+						<span class="expandable hidden block">Help</span>
+					</button>
+					<button class="flex flex-row items-center gap-2">
+						<e class="material-symbols-outlined rounded-lg p-2">settings</e>
+						<span class="expandable hidden block">Settings</span>
+					</button>
+				</div>
+				<div>
+					<h1 class="font-bold text-xl">Native Application with the Pane Window API</h1>
+					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos aut quasi ut dolor sequi beatae velit id minima totam. Velit quas provident facilis. Aliquid amet neque dignissimos deleniti impedit illo!</p>	
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script src="paneOS.rangeSliderHandler.js"></script>
+<script src="paneOS.flyoutHandler.js"></script>
+<script src="paneOS.windowHelper.js"></script>
+<script src="paneOS.dwm.js"></script>
+<script>
+document.getElementById('clock').innerHTML = new Date().getHours() + ':' + new Date().getMinutes();
+setInterval(() => {
+	document.getElementById('clock').innerHTML = new Date().getHours() + ':' + new Date().getMinutes();
+}, 60000);
+document.getElementById('date').innerHTML = new Date().toLocaleDateString();
+</script>

@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+body {
+	background: url("icons/img24.jpg");
+	background-size: cover;
+}
