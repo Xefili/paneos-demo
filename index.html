@@ -68,41 +68,43 @@
 
 			<div id="networkFlyout" class="hidden grid grid-cols-3 grid-rows-3 absolute bottom-16 right-4 border-neutral-600 border-2 backdrop-blur-2xl bg-neutral-600/25 text-white gap-4 p-4 rounded-xl">
 				<div class="grid grid-rows-[2fr_1fr] grid-cols-1 text-center">
-					<button class="border-neutral-600 border rounded-lg bg-neutral-600/25">
+					<button class="border-neutral-600 border rounded-lg bg-neutral-600/25 networkFlyoutButton" onclick="document.getElementsByClassName('networkFlyoutButton')[0].classList.toggle('bg-indigo-400!');document.getElementsByClassName('networkFlyoutButton')[0].classList.toggle('text-black');">
 						<e class="material-symbols-outlined">brightness_medium</e>
 					</button>
 					<span>Brightness</span>
 				</div>
 				<div class="grid grid-rows-[2fr_1fr] grid-cols-1 text-center">
-					<button class="border-neutral-600 border rounded-lg bg-neutral-600/25">
+					<button class="border-neutral-600 border rounded-lg bg-neutral-600/25 networkFlyoutButton" onclick="document.getElementsByClassName('networkFlyoutButton')[1].classList.toggle('bg-indigo-400!');document.getElementsByClassName('networkFlyoutButton')[1].classList.toggle('text-black');">
 						<e class="material-symbols-outlined">accessibility</e>
 					</button>
 					<span>Accessibility</span>
 				</div>
 				<div class="grid grid-rows-[2fr_1fr] grid-cols-1 text-center">
-					<button class="border-neutral-600 border rounded-lg bg-neutral-600/25">
+					<button class="border-neutral-600 border rounded-lg bg-neutral-600/25 networkFlyoutButton" onclick="document.getElementsByClassName('networkFlyoutButton')[2].classList.toggle('bg-indigo-400!');document.getElementsByClassName('networkFlyoutButton')[2].classList.toggle('text-black');">
 						<e class="material-symbols-outlined">share</e>
 					</button>
 					<span>Quick Share</span>
 				</div>
 				<div class="grid grid-rows-[2fr_1fr] grid-cols-1 text-center">
-					<button class="border-neutral-600 border rounded-lg bg-neutral-600/25">
+					<button class="border-neutral-600 border rounded-lg bg-neutral-600/25 networkFlyoutButton" onclick="document.getElementsByClassName('networkFlyoutButton')[3].classList.toggle('bg-indigo-400!');document.getElementsByClassName('networkFlyoutButton')[3].classList.toggle('text-black');">
 						<e class="material-symbols-outlined">cast</e>
 					</button>
 					<span>Cast</span>
 				</div>
 				<div class="grid grid-rows-[2fr_1fr] grid-cols-1 text-center">
-					<button class="border-neutral-600 border rounded-lg bg-neutral-600/25">
+					<button class="border-neutral-600 border rounded-lg bg-neutral-600/25 networkFlyoutButton" onclick="document.getElementsByClassName('networkFlyoutButton')[4].classList.toggle('bg-indigo-400!');document.getElementsByClassName('networkFlyoutButton')[4].classList.toggle('text-black');">
 						<e class="material-symbols-outlined">energy_program_saving</e>
 					</button>
 					<span>Energy Saver</span>
 				</div>
 				<div class="grid grid-rows-[2fr_1fr] grid-cols-1 text-center">
-					<button class="border-neutral-600 border rounded-lg bg-neutral-600/25">
+					<button class="border-neutral-600 border rounded-lg bg-neutral-600/25 networkFlyoutButton" onclick="document.getElementsByClassName('networkFlyoutButton')[5].classList.toggle('bg-indigo-400!');document.getElementsByClassName('networkFlyoutButton')[5].classList.toggle('text-black');">
 						<e class="material-symbols-outlined">subtitles</e>
 					</button>
 					<span>Live Captions</span>
 				</div>
+				<!--Compile class into Tailwind file, because it isn't detected in inline JS above. Why? No idea, this isn't godd practise anyway but I couldn't care less.-->
+				<ignore class="bg-indigo-400! hidden"></ignore>
 				<div class="col-span-3">
 					<div class="flex flex-row items-center gap-4">
 						<e class="material-symbols-outlined" id="vol">volume_off</e>
