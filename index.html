@@ -12,10 +12,44 @@
 	<div class="w-full h-full" id="desktop">
 		<!--Taskbar-->
 		<div class="w-full flex justify-between items-center h-12 text-white fixed bottom-0 backdrop-blur-2xl p-2 z-50">
-			<div class="flex">
-				<button class="flex flex-row" id="startMenu">
-					<img class="h-10 w-10" src="icons/start.png" alt="">
+			<div class="flex gap-4">
+				<button class="flex flex-row items-center" id="startMenu">
+					<img class="w-8 h-8" src="icons/start.png" alt="">
 				</button>
+				<button class="p-1 h-fit w-48 rounded-full bg-main-200/50 self-center border-2 border-neutral-900" onclick="flyout(0); document.getElementById('searchField').focus();">
+					Search...
+				</button>
+
+				<!--Taskbar Items-->
+				<div class="flex flex-row gap-4">
+					<div class="flex flex-col items-center w-8">
+						<span class="absolute -top-10 hidden rounded-md bg-main-100/50 py-1 px-2" id="app1">Native App</span>
+						<div class="bg-main-50/15 rounded-md px-2 py-1 flex-col flex items-center" id="TBapp1" onpointerover="document.getElementById('app1').style.display = 'block';" onpointerout="document.getElementById('app1').style.display = 'none';">
+							<button class="flex flex-row items-center justify-center gap-2" >
+								<e class="material-symbols-outlined text-xl text-red-400">dashboard</e>
+							</button>
+							<pill id="TBapp1-pill" class="block h-1 w-2/3 bg-indigo-400 rounded-full mt-1"></pill>
+						</div>
+					</div>
+					<div class="flex flex-col items-center w-8">
+						<span class="absolute -top-10 hidden rounded-md bg-main-100/50 py-1 px-2" id="app2">Native App</span>
+						<div class="bg-main-50/15 rounded-md px-2 py-1 flex-col flex items-center" id="TBapp2" onpointerover="document.getElementById('app2').style.display = 'block';" onpointerout="document.getElementById('app2').style.display = 'none';">
+							<button class="flex flex-row items-center justify-center gap-2">
+								<e class="material-symbols-outlined text-xl text-emerald-400">dashboard</e>
+							</button>
+							<pill id="TBapp2-pill" class="block h-1 w-2/3 bg-indigo-400 rounded-full mt-1"></pill>
+						</div>
+					</div>
+					<div class="flex flex-col items-center w-8">
+						<span class="absolute -top-10 hidden rounded-md bg-main-100/50 py-1 px-2" id="app3">Native App</span>
+						<div class="bg-main-50/15 rounded-md px-2 py-1 flex-col flex items-center" id="TBapp3" onpointerover="document.getElementById('app3').style.display = 'block';" onpointerout="document.getElementById('app3').style.display = 'none';">
+							<button class="flex flex-row items-center justify-center gap-2">
+								<e class="material-symbols-outlined text-xl text-yellow-400">dashboard</e>
+							</button>
+							<pill id="TBapp3-pill" class="block h-1 w-2/3 bg-indigo-400 rounded-full mt-1"></pill>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="flex">
 				<div class="flex flex-row gap-4">
@@ -36,7 +70,7 @@
 		<!--Flyouts-->
 		<div>
 			<div id="startMenuFlyout" class="hidden grid grid-rows-[1fr_5fr_1fr] grid-cols-1 absolute bottom-16 left-4 h-1/2 w-1/4 backdrop-blur-2xl bg-neutral-600/25 rounded-xl border-neutral-600 border">
-				<input type="text" name="" id="" placeholder="Search..." class="h-8 p-2 rounded-2xl bg-neutral-800/25 border-neutral-900 border-2 m-2 text-white self-center">
+				<input type="text" name="" id="searchField" placeholder="Search..." class="h-8 p-2 rounded-2xl bg-neutral-800/25 border-neutral-900 border-2 m-2 text-white self-center">
 				<div class="grid">
 
 				</div>
@@ -118,15 +152,91 @@
 		</div>
 		<!--Window-->
 		<div id="win1" class="absolute bg-neutral-700/50 rounded-lg backdrop-blur-3xl text-white">
-			<div id="bar" class="flex flex-row justify-between select-none p-2 border-b border-neutral-700/25">
+			<div id="bar1" class="flex flex-row justify-between select-none p-2 border-b border-neutral-700/25">
 				<div class="flex flex-row items-center gap-2">
-					<e class="material-symbols-outlined">dashboard</e>
+					<e class="material-symbols-outlined text-red-400">dashboard</e>
 					<span>PaneOS Native Application</span>
 				</div>
 				<div class="flex flex-row gap-2">
-					<button class="material-symbols-outlined">minimize</button>
-					<button class="material-symbols-outlined">stack</button>
-					<button class="material-symbols-outlined">close</button>
+					<button class="material-symbols-outlined" id="app1Min">minimize</button>
+					<button class="material-symbols-outlined" id="app1Max">stack</button>
+					<button class="material-symbols-outlined" id="app1Close">close</button>
+				</div>
+			</div>
+			<div class="relative p-2 flex flex-row gap-4 grow-0">
+				<div class="flex flex-col gap-4 border-r border-neutral-700/25 pr-2">
+					<button id="jesuscrist" class="flex flex-row items-center gap-2">
+						<e class="material-symbols-outlined rounded-lg p-2">menu</e>
+						<span class="expandable hidden block">Menu</span>
+					</button>
+					<button class="flex flex-row items-center gap-2">
+						<e class="material-symbols-outlined rounded-lg p-2 bg-indigo-400/50">assignment_return</e>
+						<span class="expandable hidden block">Main Page</span>
+					</button>
+					<button class="flex flex-row items-center gap-2">
+						<e class="material-symbols-outlined rounded-lg p-2">quiz</e>
+						<span class="expandable hidden block">Help</span>
+					</button>
+					<button class="flex flex-row items-center gap-2">
+						<e class="material-symbols-outlined rounded-lg p-2">settings</e>
+						<span class="expandable hidden block">Settings</span>
+					</button>
+				</div>
+				<div>
+					<h1 class="font-bold text-xl">Native Application with the Pane Window API</h1>
+					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos aut quasi ut dolor sequi beatae velit id minima totam. Velit quas provident facilis. Aliquid amet neque dignissimos deleniti impedit illo!</p>	
+				</div>
+			</div>
+		</div>
+
+		<div id="win2" class="absolute bg-neutral-700/50 rounded-lg backdrop-blur-3xl text-white top-16 left-16">
+			<div id="bar2" class="flex flex-row justify-between select-none p-2 border-b border-neutral-700/25">
+				<div class="flex flex-row items-center gap-2">
+					<e class="material-symbols-outlined text-emerald-400">dashboard</e>
+					<span>PaneOS Native Application</span>
+				</div>
+				<div class="flex flex-row gap-2">
+					<button class="material-symbols-outlined" id="app2Min">minimize</button>
+					<button class="material-symbols-outlined" id="app2Max">stack</button>
+					<button class="material-symbols-outlined" id="app2Close">close</button>
+				</div>
+			</div>
+			<div class="relative p-2 flex flex-row gap-4">
+				<div class="flex flex-col gap-4 border-r border-neutral-700/25 pr-2">
+					<button id="jesuscrist" class="flex flex-row items-center gap-2">
+						<e class="material-symbols-outlined rounded-lg p-2">menu</e>
+						<span class="expandable hidden block">Menu</span>
+					</button>
+					<button class="flex flex-row items-center gap-2">
+						<e class="material-symbols-outlined rounded-lg p-2 bg-indigo-400/50">assignment_return</e>
+						<span class="expandable hidden block">Main Page</span>
+					</button>
+					<button class="flex flex-row items-center gap-2">
+						<e class="material-symbols-outlined rounded-lg p-2">quiz</e>
+						<span class="expandable hidden block">Help</span>
+					</button>
+					<button class="flex flex-row items-center gap-2">
+						<e class="material-symbols-outlined rounded-lg p-2">settings</e>
+						<span class="expandable hidden block">Settings</span>
+					</button>
+				</div>
+				<div>
+					<h1 class="font-bold text-xl">Native Application with the Pane Window API</h1>
+					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos aut quasi ut dolor sequi beatae velit id minima totam. Velit quas provident facilis. Aliquid amet neque dignissimos deleniti impedit illo!</p>	
+				</div>
+			</div>
+		</div>
+		
+		<div id="win3" class="absolute bg-neutral-700/50 rounded-lg backdrop-blur-3xl text-white top-32 left-32">
+			<div id="bar3" class="flex flex-row justify-between select-none p-2 border-b border-neutral-700/25">
+				<div class="flex flex-row items-center gap-2">
+					<e class="material-symbols-outlined text-yellow-400">dashboard</e>
+					<span>PaneOS Native Application</span>
+				</div>
+				<div class="flex flex-row gap-2">
+					<button class="material-symbols-outlined" id="app3Min">minimize</button>
+					<button class="material-symbols-outlined" id="app3Max">stack</button>
+					<button class="material-symbols-outlined" id="app3Close">close</button>
 				</div>
 			</div>
 			<div class="relative p-2 flex flex-row gap-4">
