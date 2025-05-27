@@ -10,7 +10,7 @@ let startX, startY, endX, endY, diffX, diffY;
 for(let i = 0; i < document.getElementsByClassName("window").length; i++) {
 	apps['app' + i] = {
 		window: document.getElementById('win' + i),
-		min: true,
+		min: false,
 		max: false,
 		exists: true
 	};
@@ -31,8 +31,9 @@ for(let i = 0; i < document.getElementsByClassName("window").length; i++) {
 
 	// window movement end
 
+	// Window controls
 	document.getElementById('app' + i + 'Min').addEventListener('click', () => {
-		minimize('app' + i);
+		minimize(i);
 	});
 
 	document.getElementById('bar' + i).addEventListener('dblclick', () => {
@@ -44,19 +45,15 @@ for(let i = 0; i < document.getElementsByClassName("window").length; i++) {
 	});
 
 	document.getElementById('app' + i + 'Close').addEventListener('click', () => {
-		apps['app' + i].exists = false;
-		apps['app' + i].min = true;
-		apps['app' + i].window.classList.add('hidden');
+		closeWindow(i);
 	});
 
+	// taskbar icon
 	document.getElementById('TBapp' + i).addEventListener('click', () => {
-		if(apps['app' + i].min) {
-			apps['app' + i].window.classList.remove('hidden');
-			apps['app' + i].min = false;
-		} else {
-			minimize('app' + i);
-		}
+		minimize(i);
 	});
+
+	pillSync(i);
 };
 
 function moveWindow(appId, e) {
@@ -75,18 +72,64 @@ function moveWindow(appId, e) {
 	}
 }
 
+function pillSync(appId) {
+	let pill = document.getElementById('TBapp' + appId + '-pill');
+	if(!apps['app' + appId].min && apps['app' + appId].exists) {
+		pill.classList.add('w-2/3', 'block', 'bg-indigo-400');
+		pill.classList.remove('w-1/3', "bg-main-50", 'hidden');
+		document.getElementById('TBapp' + appId).classList.add('bg-main-50/15');
+	};
 
+	if(apps['app' + appId].min && apps['app' + appId].exists) {
+		pill.classList.remove('w-2/3', 'bg-indigo-400');
+		pill.classList.add('w-1/3', "bg-main-50");
+		document.getElementById('TBapp' + appId).classList.remove('bg-main-50/15');
+	};
+
+	if(apps['app' + appId].min && !apps['app' + appId].exists) {
+		pill.classList.add('hidden');
+		pill.classList.remove('block');
+		document.getElementById('TBapp' + appId).classList.remove('bg-main-50/15');
+	}
+}
+
+function closeWindow(appId) {
+	apps['app' + appId].min = true;
+	apps['app' + appId].exists = false;
+	pillSync(appId);
+
+	apps['app' + appId].window.classList.add('hidden');
+	apps['app' + appId].window.classList.remove('block');
+}
 
 function minimize(appId) {
-	apps[appId].min = true;
-	apps[appId].window.classList.toggle('hidden');
+	//true true
+	if(apps['app' + appId].min && apps['app'+ appId].exists) {
+		apps['app' + appId].min = false;
+		apps['app' + appId].exists = true;
+		pillSync(appId);
 
-	let pill = document.getElementById('TB' + appId + '-pill');
-	pill.classList.toggle('w-2/3');
-	pill.classList.toggle('w-1/3');
-	pill.classList.toggle('bg-indigo-400');
-	pill.classList.toggle('bg-main-50');
-	document.getElementById('TB' + appId).classList.toggle('bg-main-50/15');
+		apps['app' + appId].window.classList.remove('hidden');
+		apps['app' + appId].window.classList.add('block');
+	}
+	//false true
+	else if(!apps['app' + appId].min && apps['app' + appId].exists) {
+		apps['app' + appId].min = true;
+		apps['app' + appId].exists = true;
+		pillSync(appId);
+
+		apps['app' + appId].window.classList.add('hidden', 'transition-all');
+		apps['app' + appId].window.classList.remove('block');
+	};
+	// true false
+	if (apps['app' + appId].min && !apps['app' + appId].exists) {
+		apps['app' + appId].min = false;
+		apps['app' + appId].exists = true;
+		pillSync(appId);
+
+		apps['app' + appId].window.classList.remove('hidden');
+		apps['app' + appId].window.classList.add('block');
+	};
 };
 
 function maximize(appId) {
@@ -96,3 +139,10 @@ function maximize(appId) {
 	apps[appId].window.style.top = '0px';
 	apps[appId].window.style.left = '0px';
 };
+
+/*
+Minimized Windows: min == true && exists == true
+Closed Windows: min == true && exists == false
+
+max is NOT used here!
+*/
